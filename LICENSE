@@ -1,4 +1,259 @@
-                    GNU AFFERO GENERAL PUBLIC LICENSE
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DWS♤TOP UP – Boutique Free Fire (MonCash)</title>
+<meta name="theme-color" content="#0b1220" />
+<style>
+  :root{
+    --bg:#0b1220;
+    --card:#121a2b;
+    --muted:#9aa4bf;
+    --accent:#ff3c00;
+    --accent-2:#00ffa5;
+    --ring:rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
+    background:
+      radial-gradient(1200px 600px at -10% -10%, #163169 0%, transparent 50%),
+      radial-gradient(900px 400px at 110% 10%, #1a3a7e 0%, transparent 55%),
+      linear-gradient(#0b1220,#0b1220);
+    color:#fff;
+  }
+  header{
+    position:sticky; top:0; z-index:20;
+    backdrop-filter:saturate(1.2) blur(8px);
+    background:linear-gradient(180deg, rgba(11,18,32,.92), rgba(11,18,32,.75));
+    border-bottom:1px solid #1c2740;
+  }
+  .wrap{max-width:1100px; margin:0 auto; padding:14px 18px;}
+  .brand{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.3px;}
+  .brand .logo{
+    width:42px; height:42px; border-radius:12px;
+    display:grid; place-items:center; font-size:24px;
+    background:radial-gradient(60% 60% at 50% 30%, #2ce0ff 0%, #1490ff 55%, #0a5aff 100%);
+    box-shadow:0 6px 24px rgba(20,144,255,.35), inset 0 0 18px rgba(255,255,255,.18);
+  }
+  .toolbar{margin-left:auto; display:flex; align-items:center; gap:10px;}
+  .btn, button{
+    appearance:none; border:0; border-radius:12px; cursor:pointer;
+    padding:10px 14px; font-weight:700; color:#0b1220; background:var(--accent);
+    transition:.2s transform, .2s box-shadow, .2s opacity;
+    box-shadow:0 8px 20px rgba(255,60,0,.25);
+  }
+  .btn.secondary{background:#223151; color:#dfe7ff; box-shadow:none; border:1px solid #2d3a5c}
+  .btn:active{transform:translateY(1px)}
+  main .wrap{padding-top:22px; padding-bottom:50px;}
+
+  /* Hero */
+  .hero{
+    display:grid; gap:14px; align-items:center;
+    grid-template-columns:1fr auto;
+  }
+  .hero h1{margin:0; font-size:clamp(24px, 3.2vw, 36px)}
+  .sub{color:var(--muted); margin:6px 0 0}
+
+  .idbox{
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+    background:rgba(255,255,255,.03); padding:10px; border-radius:14px; border:1px solid #1b2740;
+  }
+  .idbox input{
+    flex:1 1 240px; min-width:200px; padding:12px 14px; border-radius:10px; border:1px solid #223255;
+    background:#0e1628; color:#fff; outline:none;
+  }
+
+  /* Grid products */
+  .grid{
+    display:grid; gap:16px; margin-top:22px;
+    grid-template-columns:repeat(auto-fill, minmax(210px,1fr));
+  }
+  .card{
+    background:var(--card); border:1px solid #1c2740; border-radius:18px; padding:16px;
+    box-shadow:0 10px 28px var(--ring); display:flex; flex-direction:column; gap:10px;
+  }
+  .thumb{
+    width:100%; height:120px; border-radius:14px; display:grid; place-items:center;
+    background:linear-gradient(160deg,#18284b,#0f1a33);
+    position:relative; overflow:hidden;
+  }
+  .ico{
+    font-size:46px; filter:drop-shadow(0 8px 10px rgba(0,0,0,.35));
+    transform:translateY(0); transition:.25s transform;
+  }
+  .card:hover .ico{transform:translateY(-3px)}
+  .title{font-weight:800; letter-spacing:.2px}
+  .muted{color:var(--muted)}
+  .price{font-weight:900; font-size:18px; color:var(--accent-2)}
+  .row{display:flex; align-items:center; justify-content:space-between; gap:10px}
+  .qty{
+    display:flex; align-items:center; gap:6px; background:#0f1a33; border:1px solid #223255;
+    border-radius:10px; padding:6px;
+  }
+  .qty button{background:#172546; color:#dbe7ff; padding:6px 10px; border-radius:8px; box-shadow:none}
+  .qty input{width:46px; text-align:center; padding:7px 6px; border:0; outline:none; background:transparent; color:#fff; font-weight:700}
+  .add{width:100%}
+
+  /* Cart drawer */
+  .cart{
+    position:fixed; right:18px; bottom:18px; z-index:50;
+    display:flex; flex-direction:column; gap:10px; align-items:flex-end;
+  }
+  .cart-panel{
+    width:min(420px, 92vw); max-height:70vh; overflow:auto;
+    background:var(--card); border:1px solid #1c2740; border-radius:18px; padding:14px;
+    display:none;
+  }
+  .cart.open .cart-panel{display:block}
+  .cart header{position:sticky; top:0; background:var(--card); border:0; padding:6px 0 8px; margin-bottom:8px}
+  .item{
+    display:grid; grid-template-columns:1fr auto auto; gap:10px; align-items:center;
+    padding:8px 0; border-bottom:1px dashed #263252;
+  }
+  .item:last-child{border-bottom:0}
+  .danger{background:#2e1a26; color:#ffb3c1; border:1px solid #5e243a}
+  .pay-note{font-size:13px; color:var(--muted)}
+  .foot{display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:10px}
+  .total{font-weight:900; font-size:18px}
+  .floating{
+    display:flex; align-items:center; gap:8px; padding:12px 16px; border-radius:14px;
+    background:#182445; color:#dbe7ff; border:1px solid #223255;
+  }
+  .chip{background:#0f1a33; padding:6px 10px; border-radius:999px; border:1px solid #223255; font-weight:800}
+  @media (max-width:700px){ .hero{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap" style="display:flex; align-items:center;">
+    <div class="brand">
+      <div class="logo">💎</div>
+      <div>
+        DWS♤TOP UP
+        <div class="sub">Boutique Free Fire • Paiement MonCash</div>
+      </div>
+    </div>
+    <div class="toolbar">
+      <div class="floating">
+        Panier <span id="cartCount" class="chip">0</span>
+        <button class="btn secondary" onclick="toggleCart()">Voir</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <h1>Recharge tes diamants, passes et abonnements Free Fire</h1>
+        <p class="sub">Paiement 100% via MonCash officiel – Numéro commerçant <b>38188312</b>.</p>
+      </div>
+      <div class="idbox">
+        <input id="ffid" placeholder="Entre ton ID Free Fire (obligatoire)" />
+        <button class="btn secondary" onclick="saveFFID()">Enregistrer l’ID</button>
+      </div>
+    </section>
+
+    <!-- PRODUITS -->
+    <section style="margin-top:18px">
+      <h2 style="margin:0 0 10px">Diamants</h2>
+      <div class="grid" id="grid-diamants"></div>
+    </section>
+
+    <section style="margin-top:24px">
+      <h2 style="margin:0 0 10px">Pass & Abonnements</h2>
+      <div class="grid" id="grid-autres"></div>
+    </section>
+  </div>
+</main>
+
+<!-- PANIER -->
+<div id="cart" class="cart">
+  <div class="cart-panel">
+    <header class="wrap" style="padding:0">
+      <div style="display:flex; align-items:center; justify-content:space-between">
+        <strong>🛒 Mon panier</strong>
+        <button class="btn secondary" onclick="toggleCart()">Fermer</button>
+      </div>
+    </header>
+
+    <div id="cartItems"></div>
+
+    <div class="foot">
+      <div>
+        <div class="total">Total : <span id="cartTotal">0</span> HTG</div>
+        <div class="pay-note">Le paiement s’effectue sur MonCash. Merci de vérifier votre ID Free Fire.</div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end">
+        <button class="btn danger" onclick="clearCartConfirm()">Vider</button>
+        <button class="btn" onclick="checkout()">Payer avec MonCash</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* -------- Données produits -------- */
+const PRODUCTS = {
+  diamants: [
+    { id:'d100',  name:'100 Diamants',  price:160,  emoji:'💎' },
+    { id:'d230',  name:'230 Diamants',  price:350,  emoji:'💎' },
+    { id:'d520',  name:'520 Diamants',  price:740,  emoji:'💎' },
+    { id:'d1023', name:'1023 Diamants', price:1750, emoji:'💎' },
+    { id:'d3200', name:'3200 Diamants', price:2000, emoji:'💎' },
+    { id:'d5500', name:'5500 Diamants', price:2500, emoji:'💎' },
+  ],
+  autres: [
+    { id:'lvlup', name:'Level Up',           price:450,  emoji:'⚡' },
+    { id:'sub7',  name:'Abonnement Semaine', price:350,  emoji:'📅' },
+    { id:'sub30', name:'Abonnement Mois',    price:1500, emoji:'🗓️' },
+    { id:'booyah',name:'Booyah Pass',        price:350,  emoji:'🎟️' },
+  ]
+};
+
+/* -------- Etat -------- */
+let CART = JSON.parse(localStorage.getItem('cart')||'[]');
+let FFID = localStorage.getItem('ffid') || "";
+
+/* -------- Helpers DOM -------- */
+const $ = sel => document.querySelector(sel);
+const gridDiam = $('#grid-diamants');
+const gridAutres = $('#grid-autres');
+const cartCount = $('#cartCount');
+const cartItems = $('#cartItems');
+const cartTotal = $('#cartTotal');
+const ffidInput = $('#ffid');
+ffidInput.value = FFID;
+
+/* -------- Rendu des cartes -------- */
+function productCard(p){
+  const qid = 'q_'+p.id;
+  return `
+    <article class="card">
+      <div class="thumb"><div class="ico">${p.emoji}</div></div>
+      <div class="title">${p.name}</div>
+      <div class="row">
+        <span class="price">${p.price} HTG</span>
+        <div class="qty">
+          <button onclick="dec('${qid}')">−</button>
+          <input id="${qid}" value="1" inputmode="numeric" />
+          <button onclick="inc('${qid}')">+</button>
+        </div>
+      </div>
+      <button class="btn add" onclick="addToCart('${p.id}', '${p.name}', ${p.price}, '${qid}')">Ajouter au panier</button>
+    </article>`;
+}
+function renderGrids(){
+  gridDiam.innerHTML   = PRODUCTS.diamants.map(productCard).join('');
+  gridAutres.innerHTML = PRODUCTS.autres.map(productCard).join('');
+}
+
+/* -------- Quantité -------- */
+function inc(id){ const el = document.getElementById                    GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
  Copyright (C) 2007 Free Software Foundation, Inc. <https://fsf.org/>
